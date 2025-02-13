@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<!-- Add the following code to the index.html file to display the Spine animation on the webpage. -->
+<script src="https://unpkg.com/@esotericsoftware/spine-player@4.2.*/dist/iife/spine-player.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@esotericsoftware/spine-player@4.2.*/dist/spine-player.css">
+
+<!-- 
+CSS
+==================================== -->
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered {
+    width: 640px;
+    height: 480px;
+}
+</style>
+
+
+<!-- canvas Animation  start -->
+<div id="player-container" 
+class="centered" style="width: auto; height: 100vh;"> 
+<!-- canvas player here ! -->
+</div>
+<!-- canvas Animation end -->
+
+<!-- 
+JS
+==================================== -->
+<script>
+    // Create a new SpinePlayer instance
+    const spinePlayer = new spine.SpinePlayer("player-container", {
+        skeleton: "./spine/NARUTO25_Spine.json",
+        atlas: "./spine/NARUTO25_Spine.atlas",
+        showControls: false,
+        alpha: true,
+        animation: "animation",
+        backgroundColor: "#00000000",
+    });
+
+    // play spine animation
+    function playAnimation() {
+        spinePlayer.play("animation");
+        setTimeout(() => {
+            spinePlayer.stop();
+            playAnimation();
+        }, 1000);
+    }
+
+    // play spine animation
+    playAnimation();
+    </script>
+</body>
+</html>
